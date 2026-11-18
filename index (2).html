@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Antrean Barbershop</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pole"></div>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><b id="shopName">Barbershop Kita</b><span id="clock"></span></div>
+    <nav class="tabs" id="tabs" aria-label="Tampilan">
+      <a href="#kasir" data-v="kasir">Kasir</a>
+      <a href="#booking" data-v="booking">Booking</a>
+      <a href="#layar" data-v="layar">Layar antrean</a>
+      <a href="#setelan" data-v="setelan">Setelan</a>
+    </nav>
+    <button class="btn small" id="themeBtn" type="button">Mode gelap</button>
+  </header>
+  <div id="notice"></div>
+
+  <!-- KASIR -->
+  <section id="v-kasir">
+    <div class="stats" id="stats"></div>
+
+    <form class="card" id="walkinForm" style="margin-top:16px" autocomplete="off">
+      <h2>Pelanggan datang langsung</h2>
+      <div class="row">
+        <label>Nama<input id="wName" placeholder="Nama pelanggan" maxlength="40"></label>
+        <label>Layanan<select id="wService"></select></label>
+        <label>Kapster<select id="wBarber"></select></label>
+        <label>WA (opsional)<input id="wPhone" inputmode="tel" placeholder="08xxxxxxxxxx" maxlength="20"></label>
+        <button class="btn primary" id="wSubmit" type="submit">Ambil nomor</button>
+      </div>
+      <div id="wResult"></div>
+    </form>
+
+    <h2>Kursi kapster</h2>
+    <div class="chairs" id="chairs"></div>
+
+    <h2>Menunggu<small id="waitCount"></small></h2>
+    <div class="list" id="waitList"></div>
+
+    <h2>Selesai hari ini<small id="doneCount"></small></h2>
+    <div class="list" id="doneList"></div>
+    <div id="exampleBar" style="margin-top:14px"></div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="v-booking" hidden>
+    <div class="grid2" style="margin-top:16px">
+      <form class="card" id="bookForm" autocomplete="off">
+        <h2>Booking baru</h2>
+        <div class="fields">
+          <label>Nama<input id="bName" placeholder="Nama pelanggan" maxlength="40"></label>
+          <label>WA<input id="bPhone" inputmode="tel" placeholder="08xxxxxxxxxx" maxlength="20"></label>
+          <label>Layanan<select id="bService"></select></label>
+          <label>Kapster<select id="bBarber"></select></label>
+          <label class="full">Tanggal<select id="bDate"></select></label>
+        </div>
+        <h2 style="margin-top:20px;font-size:15px">Pilih jam</h2>
+        <div class="slots" id="slots"></div>
+        <p class="hint" id="slotHint"></p>
+        <button class="btn primary" id="bSubmit" type="submit" style="margin-top:12px">Simpan booking</button>
+        <div id="bResult"></div>
+      </form>
+      <div class="card">
+        <h2>Daftar booking<small id="bListDate"></small></h2>
+        <div class="list" id="bList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYAR -->
+  <section id="v-layar" hidden></section>
+
+  <!-- SETELAN -->
+  <section id="v-setelan" hidden>
+    <form class="card" id="cfgForm" style="margin-top:16px" autocomplete="off">
+      <h2>Setelan barbershop</h2>
+      <div class="fields">
+        <label class="full">Nama barbershop<input id="sShop" maxlength="40"></label>
+        <label>Buka<input id="sOpen" type="time"></label>
+        <label>Tutup<input id="sClose" type="time"></label>
+        <label>Nomor WA toko<input id="sWa" inputmode="tel" placeholder="08xxxxxxxxxx" maxlength="20"></label>
+        <label>Kapster 1<input id="sB1" maxlength="24"></label>
+        <label>Kapster 2<input id="sB2" maxlength="24"></label>
+        <label>Kapster 3<input id="sB3" maxlength="24"></label>
+        <label>Potong biasa (Rp)<input id="sPrice1" type="number" min="0" step="1000"></label>
+        <label>Durasi potong biasa (menit)<input id="sMin1" type="number" min="5" max="120" step="5"></label>
+        <label>Potong + keramas (Rp)<input id="sPrice2" type="number" min="0" step="1000"></label>
+        <label>Durasi potong + keramas (menit)<input id="sMin2" type="number" min="5" max="120" step="5"></label>
+        <label>Jarak slot booking<select id="sSlot"><option value="15">15 menit</option><option value="20">20 menit</option><option value="30">30 menit</option><option value="45">45 menit</option><option value="60">60 menit</option></select></label>
+        <label>Jam sibuk mulai<input id="sPeakStart" type="time"></label>
+        <label>Jam sibuk selesai<input id="sPeakEnd" type="time"></label>
+        <label>Slot walk-in saat jam sibuk (%)<input id="sShare" type="number" min="0" max="90" step="5"></label>
+      </div>
+      <div style="margin-top:14px"><button class="btn primary" id="cfgSave" type="submit">Simpan setelan</button></div>
+    </form>
+
+    <div class="card" style="margin-top:16px">
+      <h2>Perkiraan uang yang bocor</h2>
+      <div class="row">
+        <label>Pelanggan pergi per hari<input id="cLost" type="number" min="0" value="15"></label>
+        <label>Hari buka per bulan<input id="cDays" type="number" min="1" max="31" value="26"></label>
+      </div>
+      <div class="calc" id="calc"></div>
+      <p class="hint">Harga rata-rata dihitung dari dua layanan di atas. Angka pelanggan pergi sebaiknya diganti dengan hasil catatan 1 minggu di depan toko.</p>
+    </div>
+  </section>
+</div>
+<div id="toast" class="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
